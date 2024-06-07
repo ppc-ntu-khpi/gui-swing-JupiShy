@@ -3,13 +3,64 @@
 ![](terminal-icon.png)
 ![](gui-icon.png)
 
-Це одна з робіт, які доповнюють основний цикл лабораторних робіт #1-8 (проект **Banking**, [Netbeans](https://netbeans.org/)) з ООП.  Основна мета цих додаткових вправ - познайомитись з різними видами інтерфейсів користувача та засобами їх створення. Згадувані 'базові' роботи розміщено в [окремому репозиторії](https://github.com/liketaurus/OOP-JAVA) (якщо будете робити завдання на "4" або "5" раджу переглянути [діаграму класів](https://github.com/liketaurus/OOP-JAVA/blob/master/MyBank.png), аби розуміти які методи є у класів).
+## Завдання на 3
 
-В ході першої роботи вам пропонується виконати **наступне завдання** - [Робота 3: GUI з Swing](https://github.com/ppc-ntu-khpi/GUI-Lab1-Starter/blob/master/Lab%203%20-%20SWING/Lab%203.md)
-  
-**Додаткове завдання** (для тих хто зробив все і прагне більшого): [дивіться тут](https://github.com/ppc-ntu-khpi/GUI-Lab1-Starter/blob/master/Lab%203%20-%20SWING/Lab%203%20-%20add.md)
+![](images/Na3.PNG)
 
-Всі необхідні бібліотеки містяться у теці [jars](https://github.com/ppc-ntu-khpi/GUI-Lab1-Starter/tree/master/jars). В тому числі - всі необхідні відкомпільовані класи з робіт 1-8 - файл [MyBank.jar](https://github.com/ppc-ntu-khpi/GUI-Lab1-Starter/blob/master/jars/MyBank.jar). Файл даних лежить у теці [data](https://github.com/ppc-ntu-khpi/GUI-Lab1-Starter/tree/master/data).
+## Завдання на 4
+
+Додала код для читання з минулих ПР
+
+![](images/Na4.PNG)
+
+## Завдання на 5
+
+![](images/Na5.PNG)
+
+```java
+  report.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+               
+                String title = "CUSTOMERS REPORT";
+                String customers = "";
+                String customerName = "";
+                String account_type = "";          
+    
+    for ( int cust_idx = 0;
+          cust_idx < Bank.getNumberOfCustomers();
+          cust_idx++ ) {
+      Customer customer = Bank.getCustomer(cust_idx);
+      customerName = customer.getFirstName() + ", " + customer.getLastName();
+     
+      for ( int acct_idx = 0;
+            acct_idx < customer.getNumberOfAccounts();
+            acct_idx++ ) {
+        Account account = customer.getAccount(acct_idx);
+        
+        if ( account instanceof SavingsAccount ) {
+          account_type = "Savings Account";
+        } else if ( account instanceof CheckingAccount ) {
+          account_type = "Checking Account";
+        } else {
+          account_type = "Unknown Account Type";
+        }
+
+        customers += "<b>" + customerName + "<br>Acc type: </b>" + account_type + "<br><b>Balance: </b> $" + account.getBalance() + "<br><hr>";
+      }
+    }
+        String report = "<br>&nbsp;<b><span style=\"font-size:2em;\">"+title+"</span><br><hr><br>" +customers+ "";
+        log.setText(report);  
+            }
+        });
+        
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+        frame.setResizable(true);
+        frame.setVisible(true);        
+    }
+```
 
 ---
 **УВАГА! Не забуваємо здавати завдання через Google Classroom та вказувати посилання на створений для вас репозиторій!**
